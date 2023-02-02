@@ -1,0 +1,271 @@
+/*It is my first website in Sololearn...I am very happy...to make this website in this cool APP */
+
+/*SPECIAL THANKS TO SOLOLEARN,,,MY FOLLOWERS,,,MY SENIORS,,WHO HELP ME CLEARING MY DOUBTS,,ONE AGAIN THANKS */
+
+/* MADE BY SOUBHAGYA */
+
+
+
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+
+html, body {
+    margin: 0px;
+    padding:0;
+    box-sizing:border-box;
+    overflow-x:hidden;
+    width:100%;
+    
+    
+}
+
+header {
+    font-family: Raleway;
+    margin: 0 auto;
+    padding: 35px;
+    text-align: center;
+    background: #555;
+    width:auto;
+    
+}
+
+header h1 {
+    color: #AAA;
+    font-size: 40px;
+    font-weight: lighter;
+    margin-bottom: 5px;
+}
+header h1:hover {
+    color:black;
+}
+header span {
+    color: #222;
+}
+div.container {
+    font-family: Raleway;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: center;
+    height:40px;
+    width:auto;
+}
+
+div.container a {
+    color: #FFf;
+    text-decoration: none;
+    font: 20px Raleway;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    WORD-SPACING:2px;
+}
+
+.red {
+    background: #f44336;
+}
+/* Top and Bottom borders go out */
+div.topBotomBordersOut a:before, div.topBotomBordersOut a:after {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: #FFF;
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+div.topBotomBordersOut a:before {
+    top: 0px;
+    transform: translateY(10px);
+}
+
+div.topBotomBordersOut a:after {
+    bottom: 0px;
+    transform: translateY(-10px);
+}
+
+div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after {
+    opacity: 1;
+    transform: translateY(0px);
+}
+.first {
+  background-image:url("https://www.hdwallpapers.in/thumbs/2018/planets_in_solar_system_4k-t2.jpg");
+  height:100%;
+  width:100%;
+  background-repeat:no-repeat;
+  background-size:contain;
+  opacity:0.78;
+}
+h1 {
+    color: antiquewhite;
+    font-size: 40px;
+    font-weight: lighter;
+    margin-bottom: 5px;
+    font-family: "Orbitron" , monospace;
+}
+p {
+    font-family:"Pacifico" , cursive;
+    text-indent:60px;
+    font-weight:lighter;
+}
+.universe {
+    background:#f44336;
+    text-align:center;
+}
+.facts {
+    background:#f44336;
+    text-align:center;
+}
+.wonder {
+     background:#f44336;
+     text-align:center;
+}
+li {
+    font-family: "Pacifico" , cursive;
+}
+.wonder img {
+    height:100%;
+    width:auto;
+}
+.form-style-7{
+    max-width:100%;
+    background:#f44336 ;
+    background-size:cover;
+    border-radius:2px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    width:auto;
+}
+.form-style-7 h1{
+    display:inline-block;
+    text-align: center;
+    padding: 0;
+    margin: 0px 0px 20px 0px;
+    color: #5C5C5C;
+    font-size:x-large;
+}
+.form-style-7 ul{
+    list-style:none;
+    padding:0;
+    margin:0;   
+}
+.form-style-7 li{
+    display: block;
+    padding: 9px;
+    border:1px solid #DDDDDD;
+    margin-bottom: 30px;
+    border-radius: 3px;
+}
+.form-style-7 li:last-child{
+    border:none;
+    margin-bottom: 0px;
+    text-align: center;
+}
+.form-style-7 li > label{
+    display: block;
+    float: left;
+    margin-top: -19px;
+    background: #FFFFFF;
+    height: 14px;
+    padding: 2px 5px 2px 5px;
+    color: black;
+    font-size: 14px;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.form-style-7 input[type="text"],
+.form-style-7 input[type="date"],
+.form-style-7 input[type="datetime"],
+.form-style-7 input[type="email"],
+.form-style-7 input[type="number"],
+.form-style-7 input[type="search"],
+.form-style-7 input[type="time"],
+.form-style-7 input[type="url"],
+.form-style-7 input[type="password"],
+.form-style-7 textarea,
+.form-style-7 select 
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline: none;
+    border: none;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    padding: 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    float:left;
+    clear:left
+}
+.form-style-7 input[type="text"]:focus,
+.form-style-7 input[type="date"]:focus,
+.form-style-7 input[type="datetime"]:focus,
+.form-style-7 input[type="email"]:focus,
+.form-style-7 input[type="number"]:focus,
+.form-style-7 input[type="search"]:focus,
+.form-style-7 input[type="time"]:focus,
+.form-style-7 input[type="url"]:focus,
+.form-style-7 input[type="password"]:focus,
+.form-style-7 textarea:focus,
+.form-style-7 select:focus 
+{
+}
+.form-style-7 li > span{
+    background: #F3F3F3;
+    display: block;
+    padding: 2px;
+    margin: 0 -9px -9px -9px;
+    text-align: center;
+    color: grey;
+    font-family: "Pacifico" , cursive;
+    font-size: 17px;
+}
+.form-style-7 textarea{
+    resize:none;
+}
+.form-style-7 input[type="submit"],
+.form-style-7 input[type="button"]{
+    background: #2471FF;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 3px solid #5994FF;
+    border-radius: 3px;
+    color: #D2E2FF;
+}
+.form-style-7 input[type="submit"]:hover,
+.form-style-7 input[type="button"]:hover{
+    background: #6B9FFF;
+    color:#fff;
+}
+.copyright {
+    font-size: 12px;
+    text-align: left;
+    padding-bottom: 10px;
+    color: black;
+    font-family: "Pacifico" , cursive;
+}
+.universe img {
+    width:100%;
+}
+.wonder img {
+    height:100%;
+    width:100%;
+    background-size:cover;
+}
+.facts img {
+    width:auto;
+}
+.form {
+    background:#f44336;
+    text-align:center;
+}
+.facts img {
+    width:auto;
+}
+h1:hover {
+    color:grey;
+}
