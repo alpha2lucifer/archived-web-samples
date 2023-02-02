@@ -1,0 +1,31 @@
+body {
+  background-image: url(https://wallpaperset.com/w/full/8/8/9/354096.jpg);
+  font-family: sans-serif;
+}
+
+.controls {
+  background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: .25em;
+  max-width: 400px;
+  padding: .5em;
+  border-radius: 5px;
+}
+.controls {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: .9em;
+  margin: 0 auto;
+}
+.controls > button {
+  background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 0;
+  padding: .5em;
+  border-radius: 5px;
+  margin-top: 1em;
+  grid-column: span 2;
+}
