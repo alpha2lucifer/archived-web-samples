@@ -1,0 +1,307 @@
+<canvas id='bird-canvas'></canvas>
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- BIRD                                                                                                    -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+<script id='bird-vertex-shader' type='x-shader/x-vertex'>
+    precision mediump float;
+
+    #define SPEED 3.0
+
+    uniform float u_canvas_height;
+    uniform float u_canvas_width;
+
+    uniform mat4 u_model_matrix;
+    uniform mat4 u_view_matrix;
+    uniform mat4 u_projection_matrix;
+
+    uniform float u_time;
+
+    attribute vec2 a_position;
+
+    varying vec2 v_position;
+
+    void main() {
+        vec4 new_position = u_projection_matrix * u_view_matrix * u_model_matrix * vec4(a_position, 0.0, 1.0);
+
+        float deltaY = (abs(new_position.x) + 0.3) * sin(abs(new_position.x * 2.0) + u_time * SPEED) / 3.0
+            + (sin(abs(a_position.x) * 100.0 + u_time) + sin(a_position.y * 100.0 + u_time)) / 70.0;
+
+        new_position.y += deltaY;
+
+        new_position.x = new_position.x * u_canvas_height / u_canvas_width;
+
+        new_position.x /= (1.0 + 0.9 * new_position.w);
+        new_position.y /= (1.0 + 0.9 * new_position.w);
+
+        v_position = a_position;
+
+        gl_Position = new_position;
+    }
+
+</script>
+
+
+<script id='bird-fragment-shader' type='x-shader/x-fragment'>
+    precision mediump float;
+
+    uniform float u_canvas_height;
+    uniform float u_canvas_width;
+
+    uniform mat4 u_model_matrix;
+    uniform mat4 u_view_matrix;
+    uniform mat4 u_projection_matrix;
+
+    uniform float u_time;
+
+    varying vec2 v_position;
+
+    void main() {
+        float color = v_position.y;
+
+        if (color > 1.0) {
+            color = 1.0;
+        } else if (color < 0.0) {
+            color = 0.0;
+        }
+
+        gl_FragColor = vec4(1.0 - color, 1.0 - color, 1.0 - color, 1.0);
+    }
+</script>
+
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- DOTS                                                                                                    -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+<script id='bird-dots-vertex-shader' type='x-shader/x-vertex'>
+    precision mediump float;
+
+    #define SPEED 3.0
+
+    uniform float u_canvas_height;
+    uniform float u_canvas_width;
+
+    uniform mat4 u_model_matrix;
+    uniform mat4 u_view_matrix;
+    uniform mat4 u_projection_matrix;
+
+    uniform float u_time;
+
+    attribute vec2 a_position;
+
+    varying vec2 v_position;
+
+
+    void main() {
+        vec4 new_position = u_projection_matrix * u_view_matrix * u_model_matrix * vec4(a_position, 0.0, 1.0);
+
+        float time = u_time;
+
+
+        float deltaY = (abs(new_position.x) + 0.3) * sin(abs(new_position.x * 2.0) + time * SPEED) / 3.0
+            + (sin(abs(a_position.x) * 100.0 + time) + sin(a_position.y * 100.0 + time)) / 70.0;
+
+        new_position.y += deltaY;
+
+        new_position.x = new_position.x * u_canvas_height / u_canvas_width;
+
+        new_position.x /= (1.0 + 0.9 * new_position.w);
+        new_position.y /= (1.0 + 0.9 * new_position.w);
+
+        v_position = a_position;
+
+        gl_Position = new_position;
+        gl_PointSize = 1.0;
+    }
+
+</script>
+
+
+<script id='bird-dots-fragment-shader' type='x-shader/x-fragment'>
+    precision mediump float;
+
+    uniform float u_canvas_height;
+    uniform float u_canvas_width;
+
+    uniform mat4 u_model_matrix;
+    uniform mat4 u_view_matrix;
+    uniform mat4 u_projection_matrix;
+
+    uniform float u_time;
+
+    varying vec2 v_position;
+
+    void main() {
+        float color = v_position.y;
+
+        if (color > 1.0) {
+            color = 1.0;
+        } else if (color < 0.0) {
+            color = 0.0;
+        }
+
+        gl_FragColor = vec4(color, color, color, 1.0);
+    }
+</script>
+
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- TRACK DOTS                                                                                              -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+<script id='bird-trackdots-vertex-shader' type='x-shader/x-vertex'>
+    precision mediump float;
+
+    #define SPEED 3.0
+    #define TIME_DELTA -0.2
+
+    uniform float u_canvas_height;
+    uniform float u_canvas_width;
+
+    uniform mat4 u_model_matrix;
+    uniform mat4 u_view_matrix;
+    uniform mat4 u_projection_matrix;
+
+    uniform float u_time;
+
+    attribute vec2 a_position;
+
+    varying vec2 v_position;
+
+
+    void main() {
+        vec4 new_position = u_projection_matrix * u_view_matrix * u_model_matrix * vec4(a_position, 0.0, 1.0);
+
+        float time = u_time + TIME_DELTA;
+
+
+        float deltaY = (abs(new_position.x) + 0.3) * sin(abs(new_position.x * 2.0) + time * SPEED) / 3.0
+            + (sin(abs(a_position.x) * 100.0 + time) + sin(a_position.y * 100.0 + time)) / 70.0;
+
+        new_position.y += deltaY;
+
+        new_position.x = new_position.x * u_canvas_height / u_canvas_width;
+
+        new_position.x /= (1.0 + 0.9 * new_position.w);
+        new_position.y /= (1.0 + 0.9 * new_position.w);
+
+        v_position = a_position;
+
+        gl_Position = new_position;
+        gl_PointSize = 2.0;
+    }
+
+</script>
+
+
+<script id='bird-trackdots-fragment-shader' type='x-shader/x-fragment'>
+    precision mediump float;
+
+    #define SPEED 3.0
+    #define PI 3.1415926
+
+    uniform float u_canvas_height;
+    uniform float u_canvas_width;
+
+    uniform mat4 u_model_matrix;
+    uniform mat4 u_view_matrix;
+    uniform mat4 u_projection_matrix;
+
+    uniform float u_time;
+
+    varying vec2 v_position;
+
+    void main() {
+        float color = 0.3 * abs(abs(v_position.x) - 4.0) * (1.0 - v_position.y) * (1.0 - sin(PI / 2.0 + u_time * SPEED * 2.0)) * sin(PI + u_time * SPEED);
+
+        if (color > 0.2) {
+            color = 0.2;
+        } else if (color < 0.0) {
+            color = 0.0;
+        }
+
+        gl_FragColor = vec4(color * 0.3, color, color * 0.7, 1.0);
+    }
+</script>
+
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- TRACK DOTS 2                                                                                            -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+<script id='bird-trackdots2-vertex-shader' type='x-shader/x-vertex'>
+    precision mediump float;
+
+    #define SPEED 3.0
+    #define TIME_DELTA -0.2
+
+    uniform float u_canvas_height;
+    uniform float u_canvas_width;
+
+    uniform mat4 u_model_matrix;
+    uniform mat4 u_view_matrix;
+    uniform mat4 u_projection_matrix;
+
+    uniform float u_time;
+
+    attribute vec2 a_position;
+
+    varying vec2 v_position;
+
+
+    void main() {
+        vec4 new_position = u_projection_matrix * u_view_matrix * u_model_matrix * vec4(a_position, 0.0, 1.0);
+
+        float time = u_time + TIME_DELTA;
+
+
+        float deltaY = (abs(new_position.x) + 0.3) * sin(abs(new_position.x * 2.0) + time * SPEED) / 3.0
+            + (sin(abs(a_position.x) * 100.0 + time) + sin(a_position.y * 100.0 + time)) / 70.0;
+
+        new_position.y += deltaY;
+
+        new_position.x = new_position.x * u_canvas_height / u_canvas_width;
+
+        new_position.x /= (1.0 + 0.9 * new_position.w);
+        new_position.y /= (1.0 + 0.9 * new_position.w);
+
+        v_position = a_position;
+
+        gl_Position = new_position;
+        gl_PointSize = 1.0;
+    }
+
+</script>
+
+
+<script id='bird-trackdots2-fragment-shader' type='x-shader/x-fragment'>
+    precision mediump float;
+
+    #define SPEED 3.0
+    #define PI 3.1415926
+
+    uniform float u_canvas_height;
+    uniform float u_canvas_width;
+
+    uniform mat4 u_model_matrix;
+    uniform mat4 u_view_matrix;
+    uniform mat4 u_projection_matrix;
+
+    uniform float u_time;
+
+    varying vec2 v_position;
+
+    void main() {
+        float color = 0.3 * abs(abs(v_position.x) - 4.0) * v_position.y * (1.0 - sin(PI / 2.0 + u_time * SPEED * 2.0)) * sin(u_time * SPEED);
+
+        if (color > 0.2) {
+            color = 0.2;
+        } else if (color < 0.0) {
+            color = 0.0;
+        }
+
+        gl_FragColor = vec4(color * 0.5, color, color * 0.7, 1.0);
+    }
+</script>
